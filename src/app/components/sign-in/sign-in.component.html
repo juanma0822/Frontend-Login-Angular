@@ -1,26 +1,76 @@
 <div class="wrapper">
-    <div class="body">
-        <img src="../../../assets/logoOfi.png" class="logo" alt="">
-        <h1 class="mb-4 mt-3">Registarme</h1>
-        <form action="">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="repeat-password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Repeat Password</label>
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button">Login</button>
-              </div>
-              <div>
-                <p class="mt-3">¿Ya tengo cuenta? <a routerLink="/logIn">Iniciar sesion </a></p>
-              </div>
-        </form>
+  <div class="body">
+    <img src="../../../assets/logoOfi.png" class="logo" alt="" />
+    <h1 class="mb-4 mt-3">Registarme</h1>
+    <div class="row g-1">
+        <div class="form-floating mb-2 col me-2">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingName"
+            placeholder="Juan Manuel"
+            [(ngModel)]="name"
+          />
+          <label for="floatingName">Nombre</label>
+        </div>
+        <div class="form-floating mb-2 col">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingLastName"
+            placeholder="Valencia Triana"
+            [(ngModel)]="lastname"  
+          />
+          <label for="floatingInput">Apellido</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingCredencial"
+            placeholder="name@example.com"
+            [(ngModel)]="credential" 
+          />
+          <label for="floatingLastName">Credencial</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            [(ngModel)]="email" 
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-2 col me-2">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            [(ngModel)]="password" 
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-2 col">
+          <input
+            type="Password"
+            class="form-control"
+            id="repeatPassword"
+            placeholder="Password"
+            [(ngModel)]="repeatPassword" 
+          />
+          <label for="floatingrepeatPassword">Repeat Password</label>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" (click)="addUser()" type="button">Crear</button>
+        </div>
+        <div>
+          <p class="mt-3">
+            ¿Ya tengo cuenta? <a routerLink="/logIn">Iniciar sesion </a>
+          </p>
+        </div>
     </div>
+  </div>
 </div>

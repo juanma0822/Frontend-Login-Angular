@@ -6,6 +6,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 export const routes: Routes = [
+    {path: '', component: LoginComponent},
     {path: 'logIn', component: LoginComponent},
     {path: 'singIn', component: SignInComponent},
     {path: 'dashboard', component: DashboardComponent},
