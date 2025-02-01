@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {  ToastrService } from 'ngx-toastr';
+import { User } from '../../interfaces/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,7 +19,11 @@ export class SignInComponent implements OnInit {
   password: string = '';
   repeatPassword: string = '';
 
-  constructor(private toast: ToastrService) { }
+  constructor(
+    private toast: ToastrService,
+    private _userService: UserService,
+    private router: Router
+  ) { }
   ngOnInit(): void {
   }
 
@@ -31,6 +37,22 @@ export class SignInComponent implements OnInit {
       this.toast.warning('Las claves son distintas', 'Verificar contraseña');
       return
     }
+
+    //CREAR EL OBJETO
+    const user: User = {
+      name: this.name,
+      lastname: this.lastname,
+      email: this.email,
+      password: this.password,
+      credential: this.credential
+    }
+
+    console.log(user);
+
+    this._userService.signIn(user).subscribe(data => {
+      this.toast.success(`La cuenta de ${this.name} ${this.lastname} ha sido creado exitosamente`)
+      this.router.navigate(['/logIn']);
+    })
   }
 
 }
