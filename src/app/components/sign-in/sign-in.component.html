@@ -1,8 +1,9 @@
 <div class="wrapper">
-  <div class="body">
-    <img src="../../../assets/logoOfi.png" class="logo" alt="" />
-    <h1 class="mb-4 mt-3">Registarme</h1>
-    <div class="row g-1">
+  <div *ngIf="!loading" class="body">
+    <div action="">
+      <img src="../../../assets/logoOfi.png" class="logo" alt="" />
+      <h1 class="mb-4 mt-3">Registarme</h1>
+      <div class="row g-1">
         <div class="form-floating mb-2 col me-2">
           <input
             type="email"
@@ -19,7 +20,7 @@
             class="form-control"
             id="floatingLastName"
             placeholder="Valencia Triana"
-            [(ngModel)]="lastname"  
+            [(ngModel)]="lastname"
           />
           <label for="floatingInput">Apellido</label>
         </div>
@@ -29,7 +30,7 @@
             class="form-control"
             id="floatingCredencial"
             placeholder="name@example.com"
-            [(ngModel)]="credential" 
+            [(ngModel)]="credential"
           />
           <label for="floatingLastName">Credencial</label>
         </div>
@@ -39,7 +40,7 @@
             class="form-control"
             id="floatingInput"
             placeholder="name@example.com"
-            [(ngModel)]="email" 
+            [(ngModel)]="email"
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -49,7 +50,7 @@
             class="form-control"
             id="floatingPassword"
             placeholder="Password"
-            [(ngModel)]="password" 
+            [(ngModel)]="password"
           />
           <label for="floatingPassword">Password</label>
         </div>
@@ -59,18 +60,22 @@
             class="form-control"
             id="repeatPassword"
             placeholder="Password"
-            [(ngModel)]="repeatPassword" 
+            [(ngModel)]="repeatPassword"
           />
           <label for="floatingrepeatPassword">Repeat Password</label>
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary" (click)="addUser()" type="button">Crear</button>
+          <button class="btn btn-primary" (click)="addUser()" type="button">
+            Crear
+          </button>
         </div>
         <div>
           <p class="mt-3">
             ¿Ya tengo cuenta? <a routerLink="/logIn">Iniciar sesion </a>
           </p>
         </div>
+      </div>
     </div>
   </div>
+  <app-spinner *ngIf="loading"></app-spinner>
 </div>

@@ -4,10 +4,13 @@ import { FormsModule } from '@angular/forms';
 import {  ToastrService } from 'ngx-toastr';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [RouterModule, FormsModule],
+  imports: [RouterModule, FormsModule, SpinnerComponent, CommonModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -18,6 +21,8 @@ export class SignInComponent implements OnInit {
   email: string = '';
   password: string = '';
   repeatPassword: string = '';
+
+  loading: boolean = false;
 
   constructor(
     private toast: ToastrService,
@@ -47,11 +52,21 @@ export class SignInComponent implements OnInit {
       credential: this.credential
     }
 
-    console.log(user);
+    this.loading = true;
 
     this._userService.signIn(user).subscribe(data => {
       this.toast.success(`La cuenta de ${this.name} ${this.lastname} ha sido creado exitosamente`)
+
+      this.loading = false;
       this.router.navigate(['/logIn']);
+    }, (event: HttpErrorResponse) => {
+      this.loading = false;
+      if(event.error.msg){
+        this.toast.error(event.error.msg, 'Error');
+        console.log(event.error.msg);
+      }else{
+        this.toast.error('Error en el servidor', 'Error');
+      }
     })
   }
 
